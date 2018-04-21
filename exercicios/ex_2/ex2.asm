@@ -11,17 +11,17 @@ section .text
 main:
 	
 	push msg          		 ; Emplilhamos a mensagem na pilha
-	call printf		 		 ; E chamamos o printf (printf("msg"))
+	call printf		 	 ; E chamamos o printf (printf("msg"))
 	add esp,4        		 ; Quando utilizamos uma chamada externa, sobre qualquer função
-					  		 ; Temos que levar em conta de que esta função utiliza registradores também
-					 		 ; Como eax, ebx, edx, edi, efi, etc, mas muitas vezes
-					 		 ; Estes registradores são sujos com lixo que esta função guardou,o que podem vir a frente
-					 		 ; Atrapalhar o funcionamento do algoritmo
-					 		 ; Para resolvermos isso, devemos resetar ao valor padrão,
-					  		 ; Adicionamos 4 ao esp pois empilhamos a mensagem (2) + a chamada do printf (2)
-					  		 ; Quando a pilha empilha estes dados, cresce para baixo, fazendo reservas como:
-					  		 ; esp = topo -4 (bytes)
-					  		 ; para retornarmos ao estado inicial devemos somar (4)
+					 ; Temos que levar em conta de que esta função utiliza registradores também
+					 ; Como eax, ebx, edx, edi, efi, etc, mas muitas vezes
+					 ; Estes registradores são sujos com lixo que esta função guardou,o que podem vir a frente
+					 ; Atrapalhar o funcionamento do algoritmo
+					 ; Para resolvermos isso, devemos resetar ao valor padrão,
+					 ; Adicionamos 4 ao esp pois empilhamos a mensagem (2) + a chamada do printf (2)
+					 ; Quando a pilha empilha estes dados, cresce para baixo, fazendo reservas como:
+					 ; esp = topo -4 (bytes)
+					 ; para retornarmos ao estado inicial devemos somar (4)
 
 	push total     		     ; scanf("fmt", &endereço)
 	push read_fmt     	     ; %d para segundos;
